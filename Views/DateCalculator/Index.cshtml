@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Date_Management_Project.Data.Country> countries;
+	countries = (List<Date_Management_Project.Data.Country>)ViewData["Countries"];
+}
+
+<h1>Pick your dates</h1>
+
+<br />
+<div>
+    @ViewData["resaraUUUUUlt"] <!-- this is a feature -->
+</div>
+<br />
+
+<form method="post" action="/DateCalculator/index"> <!-- method = hvordan informasjonen sendes (get - viser i adressefeltet og post - viser ikke i adressefeltet -->
+
+    <label for="SelectCountry">Select Country</label>
+	<select name="CountryId" id="SelectCountry">
+		@foreach (var country in countries)
+		{
+			<option value="@country.ID">@country.Name</option>
+		})
+    </select>
+
+    <br />
+    <br />
+
+    <label for="StartDate">Start Date</label>
+    <input type="date" name="StartDate" placeholder="select start date" title="Start Date" id="StartDate" value="@ViewData["StartDate"]"/>
+
+    <br />
+    <br />
+
+    <label for="EndDate">End Date</label>
+    <input type="date" name="EndDate" placeholder="select end date" title="End Date" id="EndDate" value="@ViewData["EndDate"]"/>
+
+    <br />
+    <br />
+
+    <button type="submit">Calculate</button>
+
+</form>
