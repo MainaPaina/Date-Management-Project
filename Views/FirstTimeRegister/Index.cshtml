@@ -1,0 +1,45 @@
+﻿@model Date_Management_Project.Models.FirstTimeRegisterModel;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="card-content">
+    <div class="card-bg">
+        <h1>Register</h1>
+        
+        <div>
+            @ViewData["resaraUUUUUlt"] <!-- this is a feature -->
+        </div>
+        
+        <br>
+
+        <form method="post" action="/FirstTimeRegister/index">
+            <label asp-for="ActivationPassword"></label>
+            <input asp-for="ActivationPassword" type="password" placeholder="Enter activation password" title="Activation Password" />
+            
+            <br>
+            <br>
+
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" placeholder="Enter your email" title="Email" />
+            
+            <br>
+            <br>
+            
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" placeholder="Enter your password" title="Password" />
+            
+            <br>
+            <br>
+            
+            <label asp-for="ConfirmPassword">Confirm Password</label>
+            <input asp-for="ConfirmPassword" type="password" placeholder="Confirm your password" title="Confirm Password" />
+            
+            <br>
+            <br>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>

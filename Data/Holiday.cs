@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Net;
 
 namespace Date_Management_Project.Data
 {
@@ -20,7 +21,30 @@ namespace Date_Management_Project.Data
 
 
 
+        public async static Task<List<Models.DateNager>?> GetHolidaysFromAPIAsync(int Year, string CountryCode)
+        {
+            // This method is intended to be called to get holidays from an API
 
+            HttpClient WC = new HttpClient(); //.Create("https://date.nager.at/api/v3/publicholidays/2025/AT");
+            Uri url = new Uri($"https://date.nager.at/api/v3/publicholidays/{Year}/{CountryCode}");
+            
+            HttpResponseMessage response = await WC.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // If the response is successful, read the content as a string
+                string json = await response.Content.ReadAsStringAsync();
+                // Deserialize the JSON string into a list of Holiday objects
+                var nagerList = System.Text.Json.JsonSerializer.Deserialize<List<Models.DateNager>>(json);
+                return nagerList;
+
+            }
+            else
+            {
+                // Handle the error case if needed
+                throw new Exception($"Error fetching holidays: {response.StatusCode}");
+            }
+        }
 
 
 

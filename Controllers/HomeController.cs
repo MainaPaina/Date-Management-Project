@@ -15,7 +15,7 @@ namespace Date_Management_Project.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectPermanent("/DateCalculator");
         }
 
         public IActionResult Privacy()

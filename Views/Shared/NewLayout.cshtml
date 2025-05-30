@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Date_Management_Project.Data
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Date_Management_Project</title>
+
+    <link rel="stylesheet" href="~/css/theme.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/modals.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+
+        <nav class="navbar">
+            <div class="logo_appname">
+                <a href="@Url.Action("Index", "DateCalculator")">
+                    <img src="~/images/logo.png" alt="Logo" />
+                    <span>Date Management Project</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a href="~/Users">Users</a>
+                        </li>
+                        <li>
+                            <a href="~/Countries">Countries</a>
+                        </li>
+                    }
+                    <li>
+                        <a href="~/Vacation">Vacation</a>
+                    </li>
+                    <li>
+                        <a href="~/Logout">Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="~/Login">Login</a>
+                    </li>    
+                }
+            </ul>
+        </nav>
+        <div class="nav-background-border">
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-background-border">
+        </div>
+        <div class="footer-background">
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

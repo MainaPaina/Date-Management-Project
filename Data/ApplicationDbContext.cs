@@ -14,5 +14,7 @@ namespace Date_Management_Project.Data
         public DbSet<Holiday> Holidays { get; set; }
 
         public DbSet<Vacation> Vacations { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Date_Management_Project.Data
         public string Name { get; set; }
 
         public string CountryCode { get; set; }
+
+        public List<Holiday>? Holidays { get; set; }
     }
 }

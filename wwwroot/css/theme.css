@@ -1,0 +1,133 @@
+﻿:root {
+    --background-image: url(/Images/johny-goerend-Oz2ZQ2j8We8-unsplash.jpg);
+    --primary-color: #00B6C3;
+    --accent-color: #009086;
+    --secondary-color: #134A74;
+    --dark-accent-color: #013B67;
+    --dark-color: #093352;
+    --darker-color: #052339;
+    --darkest-color: #041b2c;
+    --nav-background-gradiant-color: linear-gradient(to right, var(--primary-color), var(--accent-color), var(--secondary-color));
+    --nav-background-border: linear-gradient(to right, #03EEDE 0%, #23D0BC 50%, #628AD6 100%);
+    --footer-background: linear-gradient(to right, var(--accent-color) 2%, var(--secondary-color) 55%, var(--dark-color) 100%);
+    --footer-background-border: linear-gradient(to right, #4DE8D6 0%, #7DC2CF 50%, #819DD0 100%);
+    --primary-button-background-color: linear-gradient(to right #5AC1A7 10%, #43B29B 53%, #009086 100%);
+    --primary-button-background-border: linear-gradient(to right, #03EEDE 0%, #00B6C3 100%);
+    --primary-button-hover: linear-gradient(to right, #5AC1A7 0%, #43B29B 50%, #009086 100%);
+
+
+}
+
+* {
+    font-family: "Inter", sans-serif;
+}
+
+body
+{
+    margin-bottom: 60px;
+    background-image: var(--background-image);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+}
+
+header {
+    background: var(--nav-background-gradiant-color);
+    border-bottom: 1px solid var(--nav-background-border);
+    display: block;
+    height: 5rem;
+    
+}
+
+header nav {
+    background: var(--nav-background-gradiant-color);
+    background-clip: text;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    list-style: none;
+    font-weight: 600;
+    color: var(--dark-accent-color);
+}
+
+.nav-links a:hover {
+    color: white;
+    font-size: 1.65rem;
+    text-shadow: 0px 4px 5px #052339;
+/*    transition: color 0.3s ease;*/
+}
+
+.nav-background-border {
+    display: flex;
+    background: var(--nav-background-border);
+    height: 2px;
+    width: 100%;
+    opacity: 0.6;
+}
+
+.nav-links li {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--darkest-color);
+    font-weight: bold;
+    background: var(--footer-background-border);
+    -webkit-background-clip: text;
+}
+
+.card-bg {
+    width: 40%;
+    height: 30rem;
+    background: #ffffff rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-background-border {
+    display: flex;
+    background: var(--footer-background-border);
+    height: 2px;
+    width: 100%;
+    opacity: 0.6;
+}
+
+.footer-background {
+    background: var(--footer-background);
+    height: 150px;
+    width: 100%;
+}
+
+.card-content {
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 70%;
+    background: #a0676715;
+}

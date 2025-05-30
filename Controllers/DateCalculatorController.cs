@@ -1,4 +1,5 @@
 ﻿using Date_Management_Project.Data;
+using Date_Management_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Date_Management_Project.Controllers
@@ -19,39 +20,37 @@ namespace Date_Management_Project.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Index(DateTime startDate, DateTime endDate, int countryId) // må stemma øve ens me d som står i "Form"
-        {
-                                                          // variabelNavn => Kolonnen du velger å sortere
-            ViewData["Countries"] = _context.Countries.OrderBy(country => country.Name).ToList();
-            ViewData["StartDate"] = startDate.ToString("yyyy-MM-dd");
-            ViewData["EndDate"] = endDate.ToString("yyyy-MM-dd");
 
-            if (startDate > endDate)
+        [HttpPost]
+        public IActionResult Index(DateCalculatorModel formModel) // må stemma øve ens me d som står i "Form"
+        {
+            if (formModel != null)
             {
-                ViewData["resaraUUUUUlt"] = "Start date cannot be after end date.";
+                // variabelNavn => Kolonnen du velger å sortere
+                ViewData["Countries"] = _context.Countries.OrderBy(country => country.Name).ToList();
+                /*ViewData["StartDate"] = formModel.StartDate.ToString("yyyy-MM-dd");
+                ViewData["EndDate"] = endDate.ToString("yyyy-MM-dd");*/
+
+                if (formModel.StartDate > formModel.EndDate)
+                {
+                    ViewData["resaraUUUUUlt"] = "Start date cannot be after end date.";
+                    return View("Index");
+                }
+
+                int totalDays = formModel.CalculateDays(_context);
+
+
+                ViewData["resaraUUUUUlt"] = $"{totalDays} working days";
                 return View("Index");
             }
-
-            TimeSpan difference = endDate - startDate;
-
-            // Calculate the number of working days
-            int totalDays = 0;
-            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            else
             {
-                // Check if the day is a weekend (Saturday or Sunday)
-                if (date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
-                {
-                    // Check if the day is a holiday in the selected country
-                    if (!Holiday.IsAHoliday(date, _context, countryId))
-                    {  //klasse  metode  valgtdato database  valgtland
-                        totalDays++;
-                    }
-                }
+                ViewData["resaraUUUUUlt"] = "Please fill in all fields.";
+                return View("Index");
             }
-
-            ViewData["resaraUUUUUlt"] = $"{totalDays} working days";
-            return View("Index");
         }
+
+
+
     }
 }

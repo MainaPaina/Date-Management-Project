@@ -1,44 +1,68 @@
-﻿@*
+﻿@model DateCalculatorModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     List<Date_Management_Project.Data.Country> countries;
 	countries = (List<Date_Management_Project.Data.Country>)ViewData["Countries"];
 }
+<div class="card-content">
+    <div class="card-bg">
 
-<h1>Pick your dates</h1>
+        <h1>Pick your dates</h1>
 
-<br />
-<div>
-    @ViewData["resaraUUUUUlt"] <!-- this is a feature -->
+        <br />
+        <div>
+            @ViewData["resaraUUUUUlt"] <!-- this is a feature -->
+        </div>
+        <br />
+
+        <form method="post" action="/DateCalculator/index"> <!-- method = hvordan informasjonen sendes (get - viser i adressefeltet og post - viser ikke i adressefeltet -->
+
+            <label asp-for="CountryId">Select Country</label>
+            <select asp-for="CountryId">
+		        @foreach (var country in countries)
+		        {
+			        <option value="@country.ID">@country.Name</option>
+		        })
+            </select>
+
+            <br>
+            <br>
+
+            <label asp-for="StartDate">Start Date</label>
+            <input asp-for="StartDate" placeholder="select start date" title="Start Date"/>
+
+            <br>
+            <br>
+
+            <label asp-for="EndDate">End Date</label>
+            <input asp-for="EndDate" placeholder="select end date" title="End Date" />
+
+            <br>
+            <br>
+
+            <input asp-for="IncludeSaturdays" />
+            <label asp-for="IncludeSaturdays">Include Saturdays</label>
+
+            <br>
+            <br>
+
+            <input asp-for="IncludeSundays" />
+            <label asp-for="IncludeSundays">Include Sundays</label>
+
+            <br>
+            <br>
+
+            <input asp-for="IncludeHolidays" />
+            <label asp-for="IncludeHolidays">Include Holidays</label>
+
+            <br>
+            <br>
+
+            <button type="submit">Calculate</button>
+
+        </form>
+
+    </div>
 </div>
-<br />
-
-<form method="post" action="/DateCalculator/index"> <!-- method = hvordan informasjonen sendes (get - viser i adressefeltet og post - viser ikke i adressefeltet -->
-
-    <label for="SelectCountry">Select Country</label>
-	<select name="CountryId" id="SelectCountry">
-		@foreach (var country in countries)
-		{
-			<option value="@country.ID">@country.Name</option>
-		})
-    </select>
-
-    <br />
-    <br />
-
-    <label for="StartDate">Start Date</label>
-    <input type="date" name="StartDate" placeholder="select start date" title="Start Date" id="StartDate" value="@ViewData["StartDate"]"/>
-
-    <br />
-    <br />
-
-    <label for="EndDate">End Date</label>
-    <input type="date" name="EndDate" placeholder="select end date" title="End Date" id="EndDate" value="@ViewData["EndDate"]"/>
-
-    <br />
-    <br />
-
-    <button type="submit">Calculate</button>
-
-</form>
